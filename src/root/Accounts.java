@@ -51,4 +51,18 @@ public class Accounts {
 		
 		return false;
 	}
+	public boolean deleteAccount(String username,String pwd) {
+		Connection conn;
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/contact_manager","root","password");
+			Statement stmt=conn.createStatement();
+			if(stmt.executeUpdate("delete from users where uid='"+username+"' and password='"+pwd+"';") > 0) return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		return false;
+	}
 }
